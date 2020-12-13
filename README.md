@@ -1,3 +1,74 @@
+# Cache Service
+
+a simple cache service library written in TS.
+
+## Featuers
+
+- Key-Value, In-memory storage
+- Set & get an values
+- During set, updates value if the key already exists
+- Expire object based on expiry-date or maxlife
+- Get no of hits for a specific key stored.
+- Auto-remove expired values from storage to conserve memory usage
+- Option to fetch metadata for respective keys as its stored in the memory
+- Fetch all values & stats of the storage
+
+### Methods
+
+1. `add` -> add/udpate a value for the key
+2. `fetch` -> get stored value
+3. `fetchall` -> get all stored values
+4. `info` -> get metadata of a specific key stored
+5. `remove` -> remove a stored key-value pair
+6. `removeall` -> remove all values stored.
+7. `count` -> get the total number of stored values
+8. `stats` -> get basic stats of the cache service (only count & total size is implemented now)
+
+### Sample usage
+
+```
+const store = new CacheService();
+
+// store a new key value pair
+store.set('key', 'val');
+
+// update
+store.set('key', 'val2');
+
+// fetch
+store.get('key');
+
+// remove 'key'
+store.remove('key');
+
+// fetch all data
+store.fetchall();
+
+// remove all data
+store.removeall();
+
+// expires after 5 seconds
+store.set('key1', 'value1', {maxLife: 5000});
+
+// expires on a date
+store.set('key2', 'value2', {expires: '2021-09-10 10:00:00'});
+
+
+// Auto remove expired records
+const store = new CacheService({
+    autoRemoveIntervel: 5 //checks every 5 seconds
+});
+
+store.set('key', 'some-data', {maxLife: 4000});
+
+setTimeout(()=>{
+    console.log(store.count()) //=> 0
+}, 6000);
+
+```
+
+---
+
 # TSDX User Guide
 
 Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
