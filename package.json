@@ -44,8 +44,15 @@
       "limit": "10 KB"
     }
   ],
+  "dependencies": {
+    "clone": "^2.1.2",
+    "object-sizeof": "^1.6.1",
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.1",
+    "@types/clone": "^2.1.0",
+    "@types/uuid": "^8.3.0",
     "husky": "^4.3.5",
     "size-limit": "^4.9.1",
     "tsdx": "^0.14.1",
